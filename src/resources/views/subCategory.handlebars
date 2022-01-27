@@ -1,0 +1,33 @@
+<div class='wrap distance-top'>
+    <div class='grid'>
+        <div class='grid__row'>
+            {{#each products}}
+                <div class='grid__column-3'>
+                    <div class='product-item'>
+                        <a href='{{this.subCategory}}/{{this.name}}'>
+                            <img
+                                src='{{this.image}}'
+                                class='product-item__img border border-light'
+                                alt='{{this.image}}'
+                            />
+                        </a>
+                        <a
+                            href='{{this.subCategory}}/{{this.name}}'
+                            class='product-item__name'
+                        >{{this.name}}</a>
+                        <span class='product-item__price'>{{this.price}}</span>
+                    </div>
+                </div>
+            {{else}}
+                <h1 class='container_heading'>Chưa có sản phẩm</h1>
+            {{/each}}
+        </div>
+    </div>
+    <nav aria-label="Page navigation example" class="nav-pagination">
+        <ul class="pagination justify-content-center">
+            {{#each products}}
+                <li class="page-item"><a class="page-link" href="/{{category}}/{{subCategory}}/?page={{sum @index 1}}">{{sum @index 1}}</a></li>
+            {{/each}}
+        </ul>
+    </nav>
+</div>

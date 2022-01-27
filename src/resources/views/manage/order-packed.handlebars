@@ -1,0 +1,103 @@
+<div class='wrap'>
+    <div class='grid pt-2 pb-2'>
+        <h1 class='container_heading'>Đơn hàng đã đóng gói ({{deletedCount}})</h1>
+        <a href="/bill-manage" class='btn btn-primary mb-4'><i class="fas fa-arrow-left"></i> Đơn hàng ({{count}})</a>
+        <table class='table' id='results'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th scope='col'>Ảnh</th>
+                    <th scope='col'>Tên sản phẩm</th>
+                    <th scope='col'>Size</th>
+                    <th scope='col'>Số lượng</th>
+                    <th scope='col'>Họ tên khách hàng</th>
+                    <th scope='col'>Số điện thoại</th>
+                    <th scope='col'>Email</th>
+                    <th scope='col'>Địa chỉ</th>
+                    <th scope='col'>Ghi chú</th>
+                    <th scope='col'>Tổng tiền</th>
+                    <th scope='col'></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each bills}}
+                    <tr>
+                        <td><a href="/:category/:subCategory/{{this.nameProduct}}"><img src="{{this.image}}" alt="{{this.image}}" style="width: 60px;"></a></td>
+                        <td><a class='table-link' href="/:category/:subCategory/{{this.nameProduct}}">{{this.nameProduct}}</a></td>
+                        <td class="text-center">{{this.size}}</td>
+                        <td class="text-center">{{this.quantity}}</td>
+                        <td>{{this.nameCustomer}}</td>
+                        <td><a class='table-link'
+                            href='tel:{{this.phoneNumber}}'
+                        >{{this.phoneNumber}}</a></td>
+                        <td><a class='table-link'
+                            href='mailto:{{this.email}}'
+                        >{{this.email}}</a</td>
+                        <td>{{this.address}}</td>
+                        <td>{{this.note}}</td>
+                        <td>{{multiplication this.price this.quantity}}.000</td>
+                        <td>
+                            <a href='' class='btn btn-primary btn-restore' data-id='{{this._id}}'>Khôi phục đơn hàng</a>
+                            <a href='' class='btn btn-primary mt-3' data-bs-toggle='modal' data-id='{{this._id}}' data-bs-target='#delete-bill-modal'>Đơn đã thanh toán</a>
+                        </td>
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td colspan='11' class='text-center'>
+                            Không có đơn hàng.
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{! confirm delete }}
+<div id='delete-bill-modal' class='modal' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class="btn-close" data-bs-dismiss='modal' aria-label="Close"></button>
+            </div>
+            <div class='modal-body'>
+                <p>Hành động này sẽ xóa vĩnh viễn đơn hàng. Bạn có chắc đơn hàng này đã thanh toán chứ?</p>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Hủy</button>
+                <button id='btn-delete-bill' type='button' class='btn btn-danger'>Xóa vĩnh viễn</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- hidden form --}}
+<form name='delete-bill-form' method='post'></form>
+<form name='restore-bill-form' method='post'></form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var billId
+        var deleteForm = document.forms["delete-bill-form"]
+        var restoreForm = document.forms["restore-bill-form"]
+        var btnDeleteBill = document.getElementById('btn-delete-bill')
+        var restoreBtnAll = document.querySelectorAll('.btn-restore');
+
+        $('#delete-bill-modal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            billId = button.data('id')
+        })
+        btnDeleteBill.onclick = function() {
+            deleteForm.action = '/bill/' + billId + '/force?_method=delete';
+            deleteForm.submit()
+        }
+        restoreBtnAll.forEach((restoreBtn) => {
+            restoreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                var billId = restoreBtn.getAttribute('data-id');
+                restoreForm.action = '/bill/' + billId + '/restore?_method=PATCH';
+                restoreForm.submit();
+            });
+        });
+    })
+</script>

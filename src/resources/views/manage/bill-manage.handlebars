@@ -1,0 +1,109 @@
+<div class='wrap'>
+    <div class='grid pt-2 pb-2'>
+        <h1 class='container_heading'>Đơn hàng ({{count}})</h1>
+        <a href="/admin" class='btn btn-primary mb-4'><i class="fas fa-arrow-left"></i>  Quay lại menu</a>
+        <a href="/bill-manage/order-packed" class='btn btn-primary mb-4 float-right'>Đơn hàng đã đóng gói ({{deletedCount}}) <i class="fas fa-arrow-right"></i></a>
+        <table class='table' id='results'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th scope='col'>Ảnh</th>
+                    <th scope='col'>Tên sản phẩm</th>
+                    <th scope='col'>Size</th>
+                    <th scope='col'>Số lượng</th>
+                    <th scope='col'>Họ tên khách hàng</th>
+                    <th scope='col'>Số điện thoại</th>
+                    <th scope='col'>Email</th>
+                    <th scope='col'>Địa chỉ</th>
+                    <th scope='col'>Ghi chú</th>
+                    <th scope='col'>Tổng tiền</th>
+                    <th scope='col'></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each bills}}
+                    <tr>
+                        <td><a href="/:category/:subCategory/{{this.nameProduct}}"><img src="{{this.image}}" alt="{{this.image}}" style="width: 60px;"></a></td>
+                        <td><a class='table-link' href="/:category/:subCategory/{{this.nameProduct}}">{{this.nameProduct}}</a></td>
+                        <td class="text-center">{{this.size}}</td>
+                        <td class="text-center">{{this.quantity}}</td>
+                        <td>{{this.nameCustomer}}</td>
+                        <td><a class='table-link'
+                            href='tel:{{this.phoneNumber}}'
+                        >{{this.phoneNumber}}</a></td>
+                        <td><a class='table-link'
+                            href='mailto:{{this.email}}'
+                        >{{this.email}}</a</td>
+                        <td>{{this.address}}</td>
+                        <td>{{this.note}}</td>
+                        <td>{{multiplication this.price this.quantity}}.000</td>
+                        <td>
+                            <a
+                                href=''
+                                class='btn btn-primary'
+                                data-bs-toggle='modal'
+                                data-id='{{this._id}}'
+                                data-bs-target='#delete-bill-modal'
+                            >Xác nhận</a>
+                        </td>
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td colspan='11' class='text-center'>
+                            Chưa có đơn hàng.
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{! confirm delete }}
+<div id='delete-bill-modal' class='modal' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button
+                    type='button'
+                    class='btn-close'
+                    data-bs-dismiss='modal'
+                    aria-label='Close'
+                ></button>
+            </div>
+            <div class='modal-body'>
+                <p>Bạn có chắc đã đóng gói đơn hàng này?</p>
+            </div>
+            <div class='modal-footer'>
+                <button
+                    type='button'
+                    class='btn btn-secondary'
+                    data-bs-dismiss='modal'
+                >Hủy</button>
+                <button
+                    id='btn-delete-bill'
+                    type='button'
+                    class='btn btn-danger'
+                >Đã đóng gói hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{! delete hidden form }}
+<form name='delete-bill-form' method='post'>
+
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var billId
+        var deleteForm = document.forms["delete-bill-form"]
+        var btnDeleteBill = document.getElementById('btn-delete-bill')
+        $('#delete-bill-modal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            billId = button.data('id')
+        })
+        btnDeleteBill.onclick = function() {
+            deleteForm.action = '/bill/' + billId + '?_method=delete';
+            deleteForm.submit()
+        } 
+    })
+</script>

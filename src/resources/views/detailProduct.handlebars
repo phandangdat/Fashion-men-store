@@ -1,0 +1,144 @@
+<div class='wrap'>
+    <div class='grid wrap__info-product'>
+        <div class='grid__row'>
+            <div class='preview grid__column-6'>
+                <img src='{{products.image}}' class='product-detail__img' />
+            </div>
+            <div class='details grid__column-6'>
+                <h2 class='product__title mt-3 pb-4'>{{products.name}}</h2>
+                <div class='product__detail-price pb-4'>
+                    <span>Giá bán: </span>
+                    <span class='product-price'>{{products.price}}</span>
+                    <span>₫</span>
+                </div>
+                <p class='description'>{{products.description}}</p>
+                <div class='sep'></div>
+                <form action='/bill' method='post' class='pb-4'id='myform'>
+                    <input
+                        type='hidden'
+                        value='{{products.image}}'
+                        id='image'
+                        name='image'
+                    />
+                    <input
+                        type='hidden'
+                        value='{{products.name}}'
+                        id='nameProduct'
+                        name='nameProduct'
+                    />
+                    <input
+                        type='hidden'
+                        value='{{products.price}}'
+                        id='price'
+                        name='price'
+                    />
+                    <div class='grid__row pb-4'>
+                        <div class='grid__column-6'>
+                            <span>SIZE:</span>
+                            <a class='link__size-guide' href='#'><span>Hướng dẫn
+                                    chọn size</span></a>
+                            <select
+                                class='product__select-box'
+                                name='size'
+                                id='sizeSelect'
+                            >
+                                <option value='S'>S</option>
+                                <option value='M'>M</option>
+                                <option value='L'>L</option>
+                                <option value='XL'>XL</option>
+                            </select>
+                        </div>
+                        <div class='grid__column-6'>
+                            <span>SỐ LƯỢNG:</span>
+                            <select
+                                class='product__select-box'
+                                name='quantity'
+                                id='quantitySelect'
+                            >
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <h2>Thông tin khách hàng</h2>
+                    <div class='form-group'>
+                        <label for='nameCustomer'>Họ và tên</label>
+                        <input
+                            type='text'
+                            class='form-control form-control-lg'
+                            id='nameCustomer'
+                            name='nameCustomer'
+                            autocomplete='off'
+                            required
+                        />
+                    </div>
+                    <div class='form-group'>
+                        <label for='phoneNumber'>Số điện thoại</label>
+                        <input
+                            type='text'
+                            class='form-control form-control-lg'
+                            id='phoneNumber'
+                            name='phoneNumber'
+                            autocomplete='off'
+                            required
+                        />
+                    </div>
+                    <div class='form-group'>
+                        <label for='email'>Email</label>
+                        <input
+                            type='text'
+                            class='form-control form-control-lg'
+                            id='email'
+                            name='email'
+                            placeholder='Không bắt buộc'
+                            autocomplete='off'
+                        />
+                    </div>
+                    <div class='form-group'>
+                        <label for='address'>Địa chỉ nhận hàng</label>
+                        <input
+                            type='text'
+                            class='form-control form-control-lg'
+                            id='address'
+                            name='address'
+                            autocomplete='off'
+                            required
+                        />
+                    </div>
+                    <div class='form-group'>
+                        <label for='note'>Ghi chú</label>
+                        <textarea
+                            class='form-control form-control-lg'
+                            id='note'
+                            name='note'
+                            rows='3'
+                            autocomplete='off'
+                        ></textarea>
+                    </div>
+                    <div class='grid__row pb-4'>
+                        <div class='grid__column-6'>
+                            <button type='submit' class='addtobag'>Mua</button>
+                        </div>
+                        <div class='grid__column-6'>
+                            <button class='addtocart'>+ Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('myform').addEventListener('submit', function(){
+        alert('Mua hàng thành công');
+    });
+</script>

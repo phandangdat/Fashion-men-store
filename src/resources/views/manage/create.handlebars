@@ -1,0 +1,102 @@
+<div class='wrap distance-top'>
+    <div class='grid'>
+        <h1 class='container_heading'>Đăng Sản phẩm</h1>
+        <form method='post' action='/store'>
+            <div class='form-group'>
+                <label for='name'>Tên sản phẩm</label>
+                <input
+                    type='text'
+                    class='form-control form-control-lg'
+                    id='name'
+                    name='name'
+                    placeholder='Nhập tên sản phẩm'
+                    autocomplete='off'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='price'>Giá sản phẩm</label>
+                <input
+                    type='text'
+                    class='form-control form-control-lg'
+                    id='price'
+                    name='price'
+                    placeholder='Nhập giá sản phẩm'
+                    autocomplete='off'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='description'>Mô tả</label>
+                <textarea
+                    class='form-control form-control-lg'
+                    id='description'
+                    name='description'
+                    rows='3'
+                    placeholder='Nhập mô tả về sản phẩm'
+                    autocomplete='off'
+                ></textarea>
+            </div>
+            <div class='form-group'>
+                <label for='image'>Hình sản phẩm</label>
+                <input
+                    type='text'
+                    class='form-control form-control-lg'
+                    id='image'
+                    name='image'
+                    placeholder='Nhập link ảnh của sản phẩm'
+                    autocomplete='off'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='category'>Phân loại sản phẩm</label>
+                <select
+                    class='form-control form-control-lg'
+                    id='category'
+                    name='category'
+                >
+                    <option value='ao-so-mi-nam'>-----Chọn-----</option>
+                    <option value='ao-nam'>Áo nam</option>
+                    <option value='quan-nam'>Quần nam</option>
+                    <option value='phu-kien'>Phụ kiện</option>
+                    <option value='giay-dep'>Giày dép</option>
+                </select>
+            </div>
+            <div class='form-group'>
+                <label for='subCategory'>Phân loại sản phẩm</label>
+                <select
+                    class='form-control form-control-lg'
+                    id='subCategory'
+                    name='subCategory'
+                >
+                    <option value='ao-so-mi-nam'>-----Chọn-----</option>
+                    <option value='ao-so-mi-nam'>Áo sơ mi</option>
+                    <option value='ao-thun-nam'>Áo thun</option>
+                    <option value='ao-polo-nam'>Áo polo</option>
+                    <option value='ao-khoac-nam'>Áo khoác</option>
+                    <option value='ao-vest-nam'>Áo vest</option>
+                    <option value='ao-ghi-le-nam'>Áo ghi lê</option>
+                    <option value='ao-len-nam'>Áo len</option>
+                    <option value='quan-jean-nam'>Quần jean</option>
+                    <option value='quan-tay-nam'>Quần tây</option>
+                    <option value='quan-kaki-nam'>Quần kaki</option>
+                    <option value='quan-jogger-nam'>Quần jogger</option>
+                    <option value='quan-short-nam'>Quần short</option>
+                    <option value='quan-lot-nam'>Quần lót</option>
+                    <option value='that-lung-nam'>Thắt lưng</option>
+                    <option value='vi-da-nam'>Ví da</option>
+                    <option value='ca-vat-nam'>Cà vạt</option>
+                    <option value='no-nam'>Nơ</option>
+                    <option value='tat-nam'>Tất</option>
+                    <option value='mu-non-nam'>Mũ nón</option>
+                    <option value='tui-xach-nam'>Túi xách</option>
+                    <option value='mat-kinh-nam'>Mắt kính</option>
+                    <option value='giay-nam'>Giày</option>
+                    <option value='sandal-nam'>Sandal</option>
+                    <option value='dep-nam'>Dép</option>
+                </select>
+            </div>
+            <button type='submit' class='btn btn-primary' id='submit'>Thêm sản
+                phẩm</button>
+            <a href='/admin' class='btn btn-primary'>Hủy</a>
+        </form>
+    </div>
+</div>

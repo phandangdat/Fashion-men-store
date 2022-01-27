@@ -1,0 +1,113 @@
+<div class='wrap'>
+    <div class='container__slider'>
+        <img
+            class='container__slider-slides grid__full-width'
+            src='/images/slider1.jpg'
+        />
+        <img
+            class='container__slider-slides grid__full-width'
+            src='/images/slider2.jpg'
+        />
+        <img
+            class='container__slider-slides grid__full-width'
+            src='/images/slider3.jpg'
+        />
+    </div>
+    <div class='grid'>
+        <div class='grid__row'>
+            <h1 class='container_heading'>Các sản phẩm mới nhất</h1>
+            {{#each products}}
+                <div class='grid__column-3'>
+                    <div class='product-item'>
+                        <a
+                            href='{{this.category}}/{{this.subCategory}}/{{this.name}}'
+                        >
+                            <img
+                                src='{{this.image}}'
+                                class='product-item__img border border-light'
+                                alt='{{this.image}}'
+                            />
+                        </a>
+                        <a
+                            href='{{this.category}}/{{this.subCategory}}/{{this.name}}'
+                            class='product-item__name'
+                        >{{this.name}}</a>
+                        <span class='product-item__price'>{{this.price}}</span>
+                    </div>
+                </div>
+            {{else}}
+                <h2 class='container_heading'>Không có sản phẩm</h2>
+            {{/each}}
+        </div>
+    </div>
+    <nav aria-label="Page navigation example" class="nav-pagination">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="/">1</a></li>
+            <li class="page-item"><a class="page-link" href="/?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/?page=3">3</a></li>
+            <li class="page-item"><a class="page-link" href="/?page=4">4</a></li>
+            <li class="page-item"><a class="page-link" href="/?page=...">...</a></li>
+            <li class="page-item"><a class="page-link" href="/?page=6">10</a></li>
+        </ul>
+    </nav>
+</div>
+    
+<div class='policy'>
+    <div class='grid__full-width'>
+        <div class='grid__row'>
+            <div class='grid__column-3'>
+                <div class='policy__pay'>
+                    <i class='policy__icon fas fa-plane'></i>
+                    <h4 class='policy__header'><strong>Thanh toán & giao hàng</strong></h4>
+                    <p class='policy__content'>
+                        Miễn phí vận chuyển cho đơn hàng trên 499.000 VNĐ
+                        <br />
+                        - Giao hàng và thu tiền tận nơi
+                        <br />- Chuyển khoản và giao hàng
+                        <br />
+                        - Mua hàng tại shop
+                    </p>
+                </div>
+            </div>
+            <div class='grid__column-3'>
+                <div class='policy__member'>
+                    <i class='policy__icon far fa-credit-card'></i>
+                    <h4 class='policy__header'><strong>Thẻ thành viên</strong></h4>
+                    <p class='policy__content'>
+                        Chế độ ưu đãi VIP:
+                        <br />
+                        - 5% cho thành viên Bạc
+                        <br />
+                        - 10% cho thành viên Vàng
+                        <br />
+                        - 15% cho thành viên Kim cương
+                    </p>
+                </div>
+            </div>
+            <div class='grid__column-3'>
+                <div class='policy__time'>
+                    <i class='policy__icon fas fa-clock'></i>
+                    <h4 class='policy__header'><strong>Giờ mở cửa</strong></h4>
+                    <p class='policy__content'>
+                        <strong>8h30 đến 22:00</strong>
+                        <br />
+                        - Tất cả các ngày trong tuần
+                        <br />
+                        - Áp dụng cho tất cả các chi nhánh hệ thống cửa hàng
+                    </p>
+                </div>
+            </div>
+            <div class='grid__column-3'>
+                <div class='policy__support'>
+                    <i class='policy__icon fas fa-headphones'></i>
+                    <h4 class='policy__header'><strong>Hỗ trợ 24/7</strong></h4>
+                    <p class='policy__content'>
+                        Gọi ngay cho chúng tôi khi bạn có thắc mắc
+                        <br />- 0868.345.610
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src='/javascripts/main.js'></script>
